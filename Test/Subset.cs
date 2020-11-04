@@ -4,7 +4,7 @@ using DiffSharp;
 
 namespace Test
 {
-	public class UnitTest1
+	public class SubsetTests
 	{
 		[Fact]
 		public void StringComparison()
