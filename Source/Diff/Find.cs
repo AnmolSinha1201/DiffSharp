@@ -5,7 +5,7 @@ namespace DiffSharp
 {
 	public static partial class DiffGenerator
 	{
-		public static object DeepFindSubset(this IEnumerable Enumerable, object Target)
+		public static bool DeepFindSubset(this IEnumerable Enumerable, object Target, out object FoundObject)
 		{
 			foreach (var item in Enumerable)
 			{
@@ -13,14 +13,12 @@ namespace DiffSharp
 				if (diffs.Count != 0)
 					continue;
 
-				// var reverseDiffs = GenerateDiffs(item, Target);
-				// if (reverseDiffs.Count != 0)
-				// 	continue;
-
-				return item;
+				FoundObject = item;
+				return true;
 			}
 
-			return null;
+			FoundObject = null;
+			return false;
 		}
 	}
 }

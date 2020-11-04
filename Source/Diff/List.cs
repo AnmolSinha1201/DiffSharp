@@ -14,8 +14,7 @@ namespace DiffSharp
 
 			foreach (var list1Item in List1)
 			{
-				var list2Item = List2.DeepFindSubset(list1Item);
-				if (list2Item == null)
+				if (!List2.DeepFindSubset(list1Item, out var list2Item))
 				{
 					var diff = new Diff();
 					diff.Location.Add(list1Item);
