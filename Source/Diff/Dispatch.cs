@@ -13,6 +13,14 @@ namespace DiffSharp
 		public static List<Diff> SubsetDiffs(object Object1, object Object2)
 		{
 			var retList = new List<Diff>();
+			if (Object1 is JValue j1 && Object2 is JValue j2)
+			{
+				Object1 = j1?.Value;
+				Object2 = j2?.Value;
+			}
+			// JArrays are IList
+			// JObjects handled with Dictionaries
+
 			if (Object1 == null || Object2 == null)
 			{
 				if (Object1 != Object2)
@@ -20,22 +28,10 @@ namespace DiffSharp
 				
 				return retList;
 			}
+		
 
 
-			
-			if (Object1 is JObject || Object2 is JObject)
-			{
-				Object1 = Object1.Map<Dictionary<object, object>>();
-				Object2 = Object2.Map<Dictionary<object, object>>();
-			}
-			// JArrays are IList
-			if (Object1 is JValue j1 && Object2 is JValue j2)
-			{
-				Object1 = j1.Value;
-				Object2 = j2.Value;
-			}
-
-			if (Object1 is IDictionary d1 && Object2 is IDictionary d2)
+			if (Object1 is IDictionary d1 && Object2 is IDictionary d2 || Object1 is JObject && Object2 is JObject)
 				return SubsetDiffs(Object1.Map<Dictionary<object, object>>(), Object2.Map<Dictionary<object, object>>());
 			if (Object1 is IList l1 && Object2 is IList l2)
 				return SubsetDiffs(l1.Cast<object>().ToList(), l2.Cast<object>().ToList());
