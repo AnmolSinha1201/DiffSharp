@@ -27,6 +27,11 @@ namespace DiffSharp
 				if (!Object1.Equals(Object2))
 					return new Diff().With(i => i.Location.Add(Object1)).CreateList();
 			}
+			if (Object1.GetType() == typeof(string) && Object2.GetType() == typeof(string))
+			{
+				if (!Object1.Equals(Object2))
+					return new Diff().With(i => i.Location.Add(Object1)).CreateList();
+			}
 
 			// Two proper objects compared as KVPs
 			return SubsetDiffs(Object1.Map<Dictionary<object, object>>(), Object2.Map<Dictionary<object, object>>());
