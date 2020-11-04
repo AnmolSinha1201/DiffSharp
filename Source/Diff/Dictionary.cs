@@ -16,6 +16,12 @@ namespace DiffSharp
 			foreach (var kvp1 in Dictionary1)
 			{
 				var key2 = dictionary2Keys.DeepFindSubset(kvp1.Key);
+				if (key2 == null)
+				{
+					retDiffs.Add(new Diff().With(i => i.Location.Add(kvp1.Key)));
+					continue;
+				}
+				
 				var value1 = kvp1.Value;
 				var value2 = Dictionary2[key2];
 
