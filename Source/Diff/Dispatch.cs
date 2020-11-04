@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace DiffSharp
 {
@@ -11,6 +12,12 @@ namespace DiffSharp
 
 		public static List<Diff> SubsetDiffs(object Object1, object Object2)
 		{
+			if (Object1 is JObject || Object2 is JObject)
+			{
+				Object1 = Object1.Map<Dictionary<object, object>>();
+				Object2 = Object2.Map<Dictionary<object, object>>();
+			}
+
 			if (Object1 is IDictionary d1 && Object2 is IDictionary d2)
 				return SubsetDiffs(Object1.Map<Dictionary<object, object>>(), Object2.Map<Dictionary<object, object>>());
 			if (Object1 is IList l1 && Object2 is IList l2)
