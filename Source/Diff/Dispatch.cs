@@ -63,9 +63,4 @@ namespace DiffSharp
 			return SubsetDiffs(Object1.Map<Dictionary<object, object>>(), Object2.Map<Dictionary<object, object>>());
 		}
 	}
-
-	public class Diff
-	{
-		public List<object> Location = new List<object>();
-	}
 }
