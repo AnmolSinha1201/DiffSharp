@@ -15,5 +15,14 @@ namespace DiffSharp
 
 			return retVal;
 		}
+
+		public static T Deserialize<T>(this string Source)
+		=> JsonConvert.DeserializeObject<T>(Source);
+
+		public static object Deserialize(this string Source, Type OutputType)
+		=> JsonConvert.DeserializeObject(Source, OutputType);
+
+		public static object Serialize(this object Source)
+		=> JsonConvert.SerializeObject(Source);
 	}
 }
