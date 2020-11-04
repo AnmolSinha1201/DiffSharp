@@ -17,6 +17,12 @@ namespace DiffSharp
 				Object1 = Object1.Map<Dictionary<object, object>>();
 				Object2 = Object2.Map<Dictionary<object, object>>();
 			}
+			// JArrays are IList
+			if (Object1 is JValue j1 && Object2 is JValue j2)
+			{
+				Object1 = j1.Value;
+				Object2 = j2.Value;
+			}
 
 			if (Object1 is IDictionary d1 && Object2 is IDictionary d2)
 				return SubsetDiffs(Object1.Map<Dictionary<object, object>>(), Object2.Map<Dictionary<object, object>>());
