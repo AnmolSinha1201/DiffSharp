@@ -17,20 +17,27 @@ namespace DiffSharp
 				return SubsetDiffs(l1.Cast<object>().ToList(), l2.Cast<object>().ToList());
 				
 
+			var retList = new List<Diff>();
 			if (doubleTypeList.Contains(Object1.GetType()) && doubleTypeList.Contains(Object2.GetType()))
 			{
 				if (Math.Abs(Convert.ToDouble(Object1) - Convert.ToDouble(Object2)) > double.Epsilon)
-					return new Diff().With(i => i.Location.Add(Object1)).CreateList();
+					retList.Add(new Diff().With(i => i.Location.Add(Object1)));
+
+				return retList;
 			}
 			if (Object1.GetType().IsValueType && Object2.GetType().IsValueType)
 			{
 				if (!Object1.Equals(Object2))
-					return new Diff().With(i => i.Location.Add(Object1)).CreateList();
+					retList.Add(new Diff().With(i => i.Location.Add(Object1)));
+
+				return retList;
 			}
 			if (Object1.GetType() == typeof(string) && Object2.GetType() == typeof(string))
 			{
 				if (!Object1.Equals(Object2))
-					return new Diff().With(i => i.Location.Add(Object1)).CreateList();
+					retList.Add(new Diff().With(i => i.Location.Add(Object1)));
+
+				return retList;
 			}
 
 			// Two proper objects compared as KVPs
