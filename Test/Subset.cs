@@ -69,8 +69,8 @@ namespace Test
 		[Fact]
 		public void ListOfDictionaryWithListComparison()
 		{
-			var json1 = "[{'qwe' : 'asd', 'zxc' : 123, 'tyu' : [123, 456, 789]}, {'qwe' : 'asd', 'zxc' : 123}]".Deserialize();
-			var json2 = "[{'qwe' : 'asd', 'tyu' : [456, 123, 789], 'zxc' : 123}, {'qwe' : 'asd', 'zxc' : 123}]".Deserialize();
+			var json1 = "[{'qwe' : 'asd', 'zxc' : 123, 'tyu' : [123, 456, 789]}, {'qwe' : 'asd', 'zxc' : 456}]".Deserialize();
+			var json2 = "[{'qwe' : 'asd', 'tyu' : [456, 123, 789], 'zxc' : 123}, {'qwe' : 'asd', 'zxc' : 456}]".Deserialize();
 
 			var diffs = DiffGenerator.SubsetDiffs(json1, json2);
 			Assert.Equal(0, diffs.Count);
