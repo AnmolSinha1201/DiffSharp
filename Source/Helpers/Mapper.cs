@@ -22,6 +22,9 @@ namespace DiffSharp
 		public static object Deserialize(this string Source, Type OutputType)
 		=> JsonConvert.DeserializeObject(Source, OutputType);
 
+		public static object Deserialize(this string Source)
+		=> JsonConvert.DeserializeObject(Source);
+
 		public static object Serialize(this object Source)
 		=> JsonConvert.SerializeObject(Source);
 	}
