@@ -12,6 +12,17 @@ namespace DiffSharp
 
 		public static List<Diff> SubsetDiffs(object Object1, object Object2)
 		{
+			var retList = new List<Diff>();
+			if (Object1 == null || Object2 == null)
+			{
+				if (Object1 != Object2)
+					retList.Add(new Diff().With(i => i.Location.Add(Object1)));
+				
+				return retList;
+			}
+
+
+			
 			if (Object1 is JObject || Object2 is JObject)
 			{
 				Object1 = Object1.Map<Dictionary<object, object>>();
@@ -30,7 +41,6 @@ namespace DiffSharp
 				return SubsetDiffs(l1.Cast<object>().ToList(), l2.Cast<object>().ToList());
 				
 
-			var retList = new List<Diff>();
 			if (doubleTypeList.Contains(Object1.GetType()) && doubleTypeList.Contains(Object2.GetType()))
 			{
 				if (Math.Abs(Convert.ToDouble(Object1) - Convert.ToDouble(Object2)) > double.Epsilon)
