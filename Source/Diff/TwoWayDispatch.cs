@@ -8,7 +8,7 @@ namespace DiffSharp
 {
 	public static partial class DiffGenerator
 	{
-		public static (List<Diff> Diff1, List<Diff> Diff2) TwoWayDiffs((object Object1, object Object2) Objects)
+		public static (List<Diff> Diff1, List<Diff> Diff2) TwoWayDiffs(this (object Object1, object Object2) Objects)
 		=> TwoWayDiffs(Objects.Object1, Objects.Object2);
 
 		public static (List<Diff> Diff1, List<Diff> Diff2) TwoWayDiffs(object Object1, object Object2)
@@ -20,7 +20,7 @@ namespace DiffSharp
 		}
 
 
-		public static bool DeepEquals((object Object1, object Object2) Objects)
+		public static bool DeepEquals(this (object Object1, object Object2) Objects)
 		=> DeepEquals(Objects.Object1, Objects.Object2);
 
 		public static bool DeepEquals(object Object1, object Object2)
