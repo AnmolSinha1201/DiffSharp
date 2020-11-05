@@ -54,7 +54,9 @@ namespace DiffSharp
 			}
 			if (Object1.GetType() == typeof(string) && Object2.GetType() == typeof(string))
 			{
-				if (!Object1.Equals(Object2))
+				var equality = Behavior.Contains(DiffBehavior.IgnoreCase) ?
+					Object1.ToString().Equals(Object2.ToString(), StringComparison.OrdinalIgnoreCase) : Object1.Equals(Object2);
+				if (!equality)
 					retList.Add(new Diff().With(i => i.Location.Add(new KeyValuePair<object, object>(null, Object1))));
 
 				return retList;
