@@ -14,8 +14,8 @@ namespace Test
 			var behavior = new [] { DiffBehavior.IgnoreCase };
 
 			var diffs = (json1, json2).TwoWayDiffs(behavior);
-			Assert.Equal(0, diffs.Diff1.Count);
-			Assert.Equal(0, diffs.Diff2.Count);
+			Assert.Equal(0, (int)diffs.Diff1.Count);
+			Assert.Equal(0, (int)diffs.Diff2.Count);
 		}
 
 		[Fact]
@@ -26,8 +26,8 @@ namespace Test
 			var behavior = new[] { DiffBehavior.PrimitivesAsString };
 
 			var diffs = (json1, json2).TwoWayDiffs(behavior);
-			Assert.Equal(0, diffs.Diff1.Count);
-			Assert.Equal(0, diffs.Diff2.Count);
+			Assert.Equal(0, (int)diffs.Diff1.Count);
+			Assert.Equal(0, (int)diffs.Diff2.Count);
 		}
 
 		[Fact]
@@ -37,8 +37,8 @@ namespace Test
 			var json2 = "[123, 456, 789]".Deserialize();
 
 			var diffs = (json1, json2).TwoWayDiffs();
-			Assert.Equal(1, diffs.Diff1.Count);
-			Assert.Equal(1, diffs.Diff2.Count);
+			Assert.Equal(1, (int)diffs.Diff1.Count);
+			Assert.Equal(1, (int)diffs.Diff2.Count);
 		}
 
 		[Fact]
@@ -49,8 +49,8 @@ namespace Test
 			var behavior = new[] { DiffBehavior.AllowRepeat };
 
 			var diffs = (json1, json2).TwoWayDiffs(behavior);
-			Assert.Equal(0, diffs.Diff1.Count);
-			Assert.Equal(0, diffs.Diff2.Count);
+			Assert.Equal(0, (int)diffs.Diff1.Count);
+			Assert.Equal(0, (int)diffs.Diff2.Count);
 		}
 	}
 }

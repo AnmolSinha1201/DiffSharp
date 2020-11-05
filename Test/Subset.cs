@@ -13,7 +13,7 @@ namespace Test
 			var json2 = "['qwe', 'asd', 'zxc']";
 
 			var diffs = DiffGenerator.SubsetDiffs(json1, json2);
-			Assert.Equal(0, diffs.Count);
+			Assert.Equal(0, (int)diffs.Count);
 		}
 
 		[Fact]
@@ -23,7 +23,7 @@ namespace Test
 			var json2 = "['qwe', 'asd', 'zxc']".Deserialize();
 
 			var diffs = DiffGenerator.SubsetDiffs(json1, json2);
-			Assert.Equal(0, diffs.Count);
+			Assert.Equal(0, (int)diffs.Count);
 		}
 
 		[Fact]
@@ -33,7 +33,7 @@ namespace Test
 			var json2 = "{'zxc' : 123, 'qwe' : 'asd'}".Deserialize();
 
 			var diffs = DiffGenerator.SubsetDiffs(json1, json2);
-			Assert.Equal(0, diffs.Count);
+			Assert.Equal(0, (int)diffs.Count);
 		}
 
 		[Fact]
@@ -43,7 +43,7 @@ namespace Test
 			var json2 = new[] { 456, 123, 789 };
 
 			var diffs = DiffGenerator.SubsetDiffs(json1, json2);
-			Assert.Equal(0, diffs.Count);
+			Assert.Equal(0, (int)diffs.Count);
 		}
 
 		[Fact]
@@ -53,7 +53,7 @@ namespace Test
 			var json2 = "[{'qwe' : 'asd', 'zxc' : 456}, {'qwe' : 'asd', 'zxc' : 123}]".Deserialize();
 
 			var diffs = DiffGenerator.SubsetDiffs(json1, json2);
-			Assert.Equal(0, diffs.Count);
+			Assert.Equal(0, (int)diffs.Count);
 		}
 
 		[Fact]
@@ -63,7 +63,7 @@ namespace Test
 			var json2 = "[{'qwe' : 'asd', 'zxc' : 456}]".Deserialize();
 
 			var diffs = DiffGenerator.SubsetDiffs(json1, json2);
-			Assert.Equal(1, diffs.Count);
+			Assert.Equal(1, (int)diffs.Count);
 		}
 
 		[Fact]
@@ -73,7 +73,7 @@ namespace Test
 			var json2 = "[{'qwe' : 'asd', 'tyu' : [456, 123, 789], 'zxc' : 123}, {'qwe' : 'asd', 'zxc' : 456}]".Deserialize();
 
 			var diffs = DiffGenerator.SubsetDiffs(json1, json2);
-			Assert.Equal(0, diffs.Count);
+			Assert.Equal(0, (int)diffs.Count);
 		}
 
 		[Fact]
@@ -83,7 +83,7 @@ namespace Test
 			var json2 = "[123, 789, null]".Deserialize();
 
 			var diffs = DiffGenerator.SubsetDiffs(json1, json2);
-			Assert.Equal(0, diffs.Count);
+			Assert.Equal(0, (int)diffs.Count);
 		}
 	}
 }
