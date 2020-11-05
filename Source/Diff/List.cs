@@ -14,12 +14,10 @@ namespace DiffSharp
 
 			foreach (var list1Item in List1)
 			{
-				if (!List2.DeepFindSubset(list1Item, out var list2Item))
+				if (!List2.DeepFindBestMatch(list1Item, out var list2Item, out var diffs))
 				{
-					var diff = new Diff();
-					diff.Location.Add(list1Item);
-
-					retList.Add(diff);
+					diffs.ForEach(i => i.Location.Insert(0, list1Item));
+					retList.AddRange(diffs);
 				}
 			}
 

@@ -25,7 +25,7 @@ namespace DiffSharp
 				var value2 = Dictionary2[key2];
 
 				var diffs = SubsetDiffs(value1, value2);
-				diffs.ForEach(i => i.Location.Add(kvp1.Key));
+				diffs.ForEach(i => i.Location.Insert(0, kvp1.Key));
 
 				if (diffs.Count != 0)
 				{
