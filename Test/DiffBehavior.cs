@@ -29,5 +29,28 @@ namespace Test
 			Assert.Equal(0, diffs.Diff1.Count);
 			Assert.Equal(0, diffs.Diff2.Count);
 		}
+
+		[Fact]
+		public void AllowRepeat_NotDeclared()
+		{
+			var json1 = "[123, 456, 123]".Deserialize();
+			var json2 = "[123, 456, 789]".Deserialize();
+
+			var diffs = (json1, json2).TwoWayDiffs();
+			Assert.Equal(1, diffs.Diff1.Count);
+			Assert.Equal(1, diffs.Diff2.Count);
+		}
+
+		[Fact]
+		public void AllowRepeat()
+		{
+			var json1 = "[123, 456, 123]".Deserialize();
+			var json2 = "[123, 456]".Deserialize();
+			var behavior = new[] { DiffBehavior.AllowRepeat };
+
+			var diffs = (json1, json2).TwoWayDiffs(behavior);
+			Assert.Equal(0, diffs.Diff1.Count);
+			Assert.Equal(0, diffs.Diff2.Count);
+		}
 	}
 }

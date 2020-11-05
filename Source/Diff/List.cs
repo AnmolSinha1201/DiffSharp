@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DiffSharp
 {
@@ -20,6 +21,9 @@ namespace DiffSharp
 					diffs.ForEach(i => i.Location.Insert(0, new KeyValuePair<object, object>(index, list1Item)));
 					retList.AddRange(diffs);
 				}
+
+				if (!Behavior.Contains(DiffBehavior.AllowRepeat))
+					List2.Remove(list2Item);
 			}
 
 			return retList;
