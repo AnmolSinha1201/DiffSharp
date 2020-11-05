@@ -12,11 +12,12 @@ namespace DiffSharp
 
 			var retList = new List<Diff>();
 
-			foreach (var list1Item in List1)
+			for (int index = 0; index < List1.Count; index++)
 			{
+				var list1Item = List1[index];
 				if (!List2.DeepFindBestMatch(list1Item, out var list2Item, out var diffs))
 				{
-					diffs.ForEach(i => i.Location.Insert(0, list1Item));
+					diffs.ForEach(i => i.Location.Insert(0, new KeyValuePair<object, object>(index, list1Item)));
 					retList.AddRange(diffs);
 				}
 			}

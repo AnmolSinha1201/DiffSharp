@@ -8,6 +8,6 @@ namespace DiffSharp
 {
 	public class Diff
 	{
-		public List<object> Location = new List<object>();
+		public List<KeyValuePair<object, object>> Location = new List<KeyValuePair<object, object>>();
 	}
 }

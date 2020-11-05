@@ -17,7 +17,7 @@ namespace DiffSharp
 			{
 				if (!dictionary2Keys.DeepFindSubset(kvp1.Key, out var key2))
 				{
-					retDiffs.Add(new Diff().With(i => i.Location.Add(kvp1.Key)));
+					retDiffs.Add(new Diff().With(i => i.Location.Add(new KeyValuePair<object, object>(kvp1.Key, kvp1.Value))));
 					continue;
 				}
 				
@@ -25,7 +25,7 @@ namespace DiffSharp
 				var value2 = Dictionary2[key2];
 
 				var diffs = SubsetDiffs(value1, value2);
-				diffs.ForEach(i => i.Location.Insert(0, kvp1.Key));
+				diffs.ForEach(i => i.Location.Insert(0, new KeyValuePair<object, object>(kvp1.Key, kvp1.Value)));
 
 				if (diffs.Count != 0)
 				{
