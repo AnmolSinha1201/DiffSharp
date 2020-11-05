@@ -32,7 +32,7 @@ namespace DiffSharp
 		
 
 
-			if (Object1 is IDictionary d1 && Object2 is IDictionary d2 || Object1 is JObject && Object2 is JObject)
+			if ((Object1 is IDictionary d1 && Object2 is IDictionary d2) || (Object1 is JObject && Object2 is JObject))
 				return SubsetDiffs(Object1.Map<Dictionary<object, object>>(), Object2.Map<Dictionary<object, object>>(), Behavior);
 			if (Object1 is IList l1 && Object2 is IList l2)
 				return SubsetDiffs(l1.Cast<object>().ToList(), l2.Cast<object>().ToList(), Behavior);
