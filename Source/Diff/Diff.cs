@@ -10,4 +10,9 @@ namespace DiffSharp
 	{
 		public List<KeyValuePair<object, object>> Location = new List<KeyValuePair<object, object>>();
 	}
+
+	public enum DiffBehavior
+	{
+		AllowRepeat, IgnoreCase, ValueTypesAsString
+	}
 }
