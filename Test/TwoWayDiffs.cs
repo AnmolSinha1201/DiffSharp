@@ -13,8 +13,8 @@ namespace Test
 			var json2 = "[{'qwe' : 'asd', 'tyu' : [456, 123, 789], 'zxc' : 123}, {'qwe' : 'asd', 'zxc' : 456}]".Deserialize();
 
 			var diffs = (json1, json2).TwoWayDiffs();
-			Assert.Equal(0, diffs.Diff1.Count);
-			Assert.Equal(0, diffs.Diff2.Count);
+			Assert.Equal(0, (int)diffs.Diff1.Count);
+			Assert.Equal(0, (int)diffs.Diff2.Count);
 		}
 
 		[Fact]
