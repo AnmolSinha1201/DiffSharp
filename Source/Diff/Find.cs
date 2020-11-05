@@ -40,7 +40,7 @@ namespace DiffSharp
 
 			FoundObject = bestMatch;
 			Diffs = bestDiffs;
-			return bestDiffs.Count == 0;
+			return bestDiffs?.Count == 0;
 		}
 	}
 }
