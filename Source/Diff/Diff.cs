@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace DiffSharp
 {
+	// TODO: Extension method for subset diffs
 	public class Diff
 	{
 		public List<KeyValuePair<object, object>> Location = new List<KeyValuePair<object, object>>();
@@ -13,6 +14,6 @@ namespace DiffSharp
 
 	public enum DiffBehavior
 	{
-		AllowRepeat, IgnoreCase, ValueTypesAsString
+		AllowRepeat, IgnoreCase, PrimitivesAsString
 	}
 }
