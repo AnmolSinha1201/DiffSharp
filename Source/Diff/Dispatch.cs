@@ -38,6 +38,11 @@ namespace DiffSharp
 				return SubsetDiffs(l1.Cast<object>().ToList(), l2.Cast<object>().ToList(), Behavior);
 				
 
+			if (Behavior.Contains(DiffBehavior.PrimitivesAsString) && (Object1.GetType().IsPrimitive || Object2.GetType().IsPrimitive))
+			{
+				Object1 = Object1.ToString();
+				Object2 = Object2.ToString();
+			}
 			if (doubleTypeList.Contains(Object1.GetType()) && doubleTypeList.Contains(Object2.GetType()))
 			{
 				if (Math.Abs(Convert.ToDouble(Object1) - Convert.ToDouble(Object2)) > double.Epsilon)

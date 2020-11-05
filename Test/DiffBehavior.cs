@@ -17,5 +17,17 @@ namespace Test
 			Assert.Equal(0, diffs.Diff1.Count);
 			Assert.Equal(0, diffs.Diff2.Count);
 		}
+
+		[Fact]
+		public void PrimitivesAsString()
+		{
+			var json1 = "[123, 456, 789]".Deserialize();
+			var json2 = "['123', '456', '789']".Deserialize();
+			var behavior = new[] { DiffBehavior.PrimitivesAsString };
+
+			var diffs = (json1, json2).TwoWayDiffs(behavior);
+			Assert.Equal(0, diffs.Diff1.Count);
+			Assert.Equal(0, diffs.Diff2.Count);
+		}
 	}
 }
